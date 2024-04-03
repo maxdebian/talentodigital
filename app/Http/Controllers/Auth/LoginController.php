@@ -48,7 +48,7 @@ class LoginController extends Controller
     public function login(Request $request){
         $userLocal=null;
         $credentials = $this->credentials($request);
-        
+
         if(Auth::validate($credentials)){
             $user = Auth::getLastAttempted();
             auth()->login($user);
@@ -57,10 +57,10 @@ class LoginController extends Controller
             if(!empty($credentials['username'])){
                 $userLocal = User::where('username',$credentials['username'])->first();
                 //where('username','=',$credentials['username'])
-                //select * from users where username='.$variable.' limit 1 
+                //select * from users where username='.$variable.' limit 1
             }else if(!empty($credentials['email'])){
                 $userLocal = User::where('email',$credentials['email'])->first();
-            } 
+            }
             /* $typeField = filter_var($request->input($this->username()), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
             $userLocal = User::where($typeField,$credentials[$typeField])->first(); */
 
@@ -72,7 +72,7 @@ class LoginController extends Controller
                 Session::flash('flash_message_class','danger');
             }
 
-            return back()->withInput();
+            return redirect()->back();
         }
 
 

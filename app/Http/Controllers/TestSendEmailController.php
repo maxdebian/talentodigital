@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Contracts\Mail\Mailable;
 use App\Mail\SendTestEmail;
+use App\Jobs\SendEmailTestJob;
 
 class TestSendEmailController extends Controller
 {
@@ -14,7 +15,8 @@ class TestSendEmailController extends Controller
         Send email
     */
     public function sendEmailTest(){
-        Mail::to('carloatedesco.ct@gmail.com')->send(new SendTestEmail('Talentos'));
+        /* Mail::to('carloatedesco.ct@gmail.com')->send(new SendTestEmail('Talentos')); */
+        SendEmailTestJob::dispatch('Talentos');
     }
 
     /**

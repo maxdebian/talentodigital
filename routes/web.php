@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/testEmail','TestSendEmailController@sendEmailTest')->name('testEmail');
+//Route::get('/testEmail','TestSendEmailController@sendEmailTest')->name('testEmail');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('password/reset/{token}', 'Auth\ForgotPasswordController@passwordReset')->name('password.reset');
+Route::post('password/reset', 'Auth\ForgotPasswordController@passwordUpdate')->name('password.update');
